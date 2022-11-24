@@ -69,11 +69,13 @@ evalTargetFun.OptState = function(opt.state, xs, extras) {
 
     # objective fun problem? allow user to handle it
     y2 = y # changed y that we will use in opt.path
+    
     if (!y.valid) {
       if (is.null(imputeY)) { # ok then stop
         if (is.error(y))
           stopf("Objective function error: %s ", y$message)
         else
+          print('line78')
           stopf("Objective function output must be a numeric of length %i, but we got: %s",
             ny, convertToShortString(y))
       } else { # let user impute
@@ -82,6 +84,7 @@ evalTargetFun.OptState = function(opt.state, xs, extras) {
             convertToShortString(y))
         y2 = imputeY(x, y, opt.path)
         if (!isYValid(y2))
+          print('line88')
           stopf("Y-Imputation failed. Must return a numeric of length: %i, but we got: %s",
             ny, convertToShortString(y2))
       }
