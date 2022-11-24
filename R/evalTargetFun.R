@@ -69,8 +69,7 @@ evalTargetFun.OptState = function(opt.state, xs, extras) {
 
     # objective fun problem? allow user to handle it
     y2 = y # changed y that we will use in opt.path
-    
-    print(y)
+
     
     if (!y.valid) {
       if (is.null(imputeY)) { # ok then stop
