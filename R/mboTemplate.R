@@ -15,28 +15,39 @@ mboTemplate = function(obj) {
 
 # Creates the initial OptState and then runs the template on it
 mboTemplate.OptProblem = function(obj) {
+  print('makeOptState(obj)')
   opt.state = makeOptState(obj)
   # evaluate initial design (if y not given) and log to optpath
+  print('evalMBODesign.OptState(opt.state)')
   evalMBODesign.OptState(opt.state)
+  print('finalizeMboLoop(opt.state)')
   finalizeMboLoop(opt.state)
+  print('mboTemplate(opt.state)')
   mboTemplate(opt.state)
 }
 
 # Runs the mbo iterations on any given OptState until termination criterion is fulfilled
 mboTemplate.OptState = function(obj) {
   opt.state = obj
+  print('mboTemplate.OptState')
+  print(opt.state)
   setOptStateLoopStarttime(opt.state)
   # check if budget is already exceeded after intitial design creation
   terminate = getOptStateTermination(opt.state)
   if (terminate$term) {
+    print('reach terminate state')
     opt.problem = getOptStateOptProblem(opt.state)
     showInfo(getOptProblemShowInfo(opt.problem), "%s. The termination conditions
       was satisfied right after the creation of the initial design!", terminate$message)
     return(opt.state)
   }
   repeat {
+    print('proposePoints')
     prop = proposePoints(opt.state)
+    print(prop)
+    print('evalProposedPoints.OptState')
     evalProposedPoints.OptState(opt.state, prop)
+    print('finalizeMboLoop(opt.state)')
     finalizeMboLoop(opt.state)
     terminate = getOptStateTermination(opt.state)
     if (terminate$term) {
@@ -48,10 +59,13 @@ mboTemplate.OptState = function(obj) {
 
 finalizeMboLoop = function(opt.state) {
   # put resampling of surrogate learner and the model itself in the result environment
+  print('getOptStateOptResult(opt.state)')
   opt.result = getOptStateOptResult(opt.state)
+  print(opt.result)
   setOptResultResampleResults(opt.result, opt.state)
   setOptResultStoredModels(opt.result, opt.state)
   # Indicate, that we are finished by increasing the loop by one
+  print('increasing the loop')
   setOptStateLoop(opt.state)
   # save on disk routine
   # save with increased loop so we can directly start from here again
