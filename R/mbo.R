@@ -54,12 +54,18 @@
 #' }
 mbo = function(fun, design = NULL, learner = NULL, control = NULL,
   show.info = getOption("mlrMBO.show.info", TRUE), more.args = list()) {
+  
+  print('before initOptProblem')
 
   # assertions are done here:
   opt.problem = initOptProblem(fun = fun, design = design, learner = learner, control = control, show.info = show.info, more.args = more.args)
+  
+  print('before mboTemplate')
 
   # we call the magic mboTemplate where everything happens
   final.opt.state = mboTemplate(opt.problem)
+  
+  print('before mboFinalize2')
 
   mboFinalize2(final.opt.state)
 }
