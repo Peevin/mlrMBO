@@ -60,6 +60,7 @@ mbo = function(fun, design = NULL, learner = NULL, control = NULL,
   # assertions are done here:
   opt.problem = initOptProblem(fun = fun, design = design, learner = learner, control = control, show.info = show.info, more.args = more.args)
   
+  print(opt.problem)
   print('before mboTemplate')
 
   # we call the magic mboTemplate where everything happens
