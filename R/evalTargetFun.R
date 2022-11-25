@@ -33,12 +33,16 @@ evalTargetFun.OptState = function(opt.state, xs, extras) {
   # trafo X points
   xs.trafo = lapply(xs, trafoValue, par = par.set)
   print('[xs.trafo]')
-  print(xs.trafo)
+  # print(xs.trafo)
 
   # function to measure of fun call
     wrapFun = function(x) {
       st = proc.time()
+      print('[st]')
+      print(st)
       y = do.call(getOptProblemFun(opt.problem), insert(list(x = x), getOptProblemMoreArgs(opt.problem)))
+      print('[y]')
+      print(y)
       user.extras = list()
       # here we extract additional stuff which the user wants to log in the opt path
       if (hasAttributes(y, "extras")) {
