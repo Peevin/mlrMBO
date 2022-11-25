@@ -33,7 +33,7 @@ evalTargetFun.OptState = function(opt.state, xs, extras) {
   # trafo X points
   xs.trafo = lapply(xs, trafoValue, par = par.set)
   print('[xs.trafo]')
-  # print(xs.trafo)
+  print(xs.trafo)
 
   # function to measure of fun call
     wrapFun = function(x) {
@@ -53,6 +53,8 @@ evalTargetFun.OptState = function(opt.state, xs, extras) {
   isYValid = function(y) {
     !is.error(y) && testNumeric(y, len = ny, any.missing = FALSE, finite = TRUE)
   }
+  
+  print('before [res]')
 
   # return error objects if we impute
   res = parallelMap(wrapFun, xs.trafo, level = "mlrMBO.feval",
