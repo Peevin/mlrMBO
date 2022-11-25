@@ -25,12 +25,12 @@ evalMBODesign.OptState = function(opt.state) {
   print(pids)
   y.name = control$y.name
   print('y.name')
-  print(y.name)
+  # print(y.name)
 
   # get dummy "extras object" for init design
   extras = getExtras(n = nrow(design), prop = NULL, train.time = NA_real_, control = control)
   print('[extra]')
-  print(extras)
+  # print(extras)
 
   # check that the provided design one seems ok
   # sanity check: are paramter values and colnames of design consistent?
@@ -52,7 +52,7 @@ evalMBODesign.OptState = function(opt.state) {
   design.x = design.x[, pids, drop = FALSE]
   xs = dfRowsToList(design.x, par.set)
   print('[xs]')
-  print(xs)
+  # print(xs)
 
   # either only log init design stuff to opt.path or eval y-values
   if (all(y.name %in% colnames(design))) {
