@@ -25,7 +25,7 @@ evalMBODesign.OptState = function(opt.state) {
   print(pids)
   y.name = control$y.name
   print('y.name')
-  # print(y.name)
+  print(y.name)
 
   # get dummy "extras object" for init design
   extras = getExtras(n = nrow(design), prop = NULL, train.time = NA_real_, control = control)
